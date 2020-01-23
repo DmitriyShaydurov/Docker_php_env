@@ -11,9 +11,10 @@ RUN apt-get update \
     && docker-php-ext-install sockets \
     && pecl install -of raphf && docker-php-ext-enable raphf \
     && pecl install -of propro && docker-php-ext-enable propro \
-    && pecl install -of pecl_http && echo "extension=http.so" >> /usr/local/etc/php/conf.d/docker-php-ext-zhttp.ini \
-    && groupadd -g 102  nginx \
-    && useradd -u 102 -g nginx nginx 
+    && pecl install -of pecl_http && echo "extension=http.so" >> /usr/local/etc/php/conf.d/docker-php-ext-zhttp.ini
+RUN groupadd -g 3000  nginx \
+    && useradd -u 3000 -g nginx nginx \
+    && chmod -R 777 /var/run
 
 WORKDIR /var/www/html
 
